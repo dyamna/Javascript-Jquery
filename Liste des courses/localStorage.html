@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
+</head>
+<body>
+    <script>
+        //Tout effacer
+
+        //localStorage.clear();
+        //Version 1
+        //localStorage.fruit= 'kiwi';
+        //Version 1
+        //localStorage.setItem('fruit','pomme');
+        if(localStorage.fruit !=undefined){
+
+            console.log(localStorage.fruit)
+        }else{
+            console.log('RIEN');
+        }
+      // stocker un tableau
+        let tab=['rouge', 'bleu', 'vert'];
+        //serializer le tableau en string
+      localStorage.tab= JSON.stringify(tab);
+      if(localStorage.tab !=undefined){
+    // string -> tab ou objet
+    console.log(localStorage.tab);
+    let tableau = JSON.parse(localStorage.tab);
+    console.log(tableau);
+      }
+
+    </script>
+</body>
+</html>
