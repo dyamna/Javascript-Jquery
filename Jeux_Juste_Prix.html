@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Jeux</title>
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
+<style>
+    .cacher{display:none}
+</style>
+</head>
+<body>
+ <div class="container">
+     <div class="offset-3 col-6">
+ <h1>Jeux</h1>
+ <p> Insérez un nombre entre 1 et 100 !</p>
+ <input id="nombre" type = "number">
+ <br> <br>
+ <button id="btn1" onclick="jouer()" class="btn btn-success">Jouer</button>
+ &nbsp;
+ <button id="btn2" onclick="reJouer()" class=" cacher">Rejouer</button>
+ <br>
+ <div id="demo">
+
+
+</div>
+ </div>
+ </div>
+ <script>
+     
+		// le juste prix
+		let prix = Math.floor(Math.random() * 100)+1; // alea 1 à 100 
+		console.log(prix); 
+		function jouer()
+		{
+			// je recupere le valeur du champ input
+			let nombre = document.getElementById('nombre').value;
+			document.getElementById('nombre').value = '' ;// je vide le champs
+			let info = '';
+			if (nombre > prix){
+				info = 'Trop grand !';
+			}else if(nombre < prix){
+				info= 'Trop petit !';
+			}else{
+                info = 'GAGNE !!';
+				// desactiver le btn jouer
+				document.getElementById('btn1').setAttribute('disabled','disabled');
+				// afficher le btn rejouer
+				document.getElementById('btn2').setAttribute('class','btn btn-danger');
+			}
+			document.getElementById('demo').innerHTML = info;
+			
+      }	
+      function reJouer(){
+          //Activer le bouton jouer
+          document.getElementById('btn1').removeAttribute('disabled');
+          //cacher le bouton jouer
+          document.getElementById('btn2').setAttribute('class','cacher');
+          let prix = Math.floor(Math.random() * 100)+1; // alea 1 à 100 
+          console.log(prix);
+          document.getElementById('demo').innerHTML = info;//on enleve GAGNE 
+      }
+  	
+
+ </script>
+</body>
+</html>
