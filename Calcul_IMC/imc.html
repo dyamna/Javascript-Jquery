@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- cdn lien http -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<title>IMC</title>
+	<style>
+		body{
+			background-color: #ddd;
+		}
+		.container-fluid, .container{
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3"></div>
+
+			<div class="col-md-3">
+				<br>
+				<h1>Calcul de l'IMC</h1>
+				<br>
+				<div class="row">
+					<div class="col-12">
+						<input  class="form-control" id="poids" placeholder="Poids en kg"><br>
+					</div>
+					<div class="col-12">
+						<input  class="form-control" id="taille" placeholder="Taille en m." ><br>
+					</div>
+					<div class="col-3">
+						<button id="btnCalcul" class="btn btn-primary">Calcul</button><br>
+					</div>
+				</div>
+				<br>					
+				<h3 id="demo">
+					
+				</h3>
+			</div>	
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+
+
+//---------------------------------------------------	
+$('#btnCalcul').click(function(){
+	let poids = $('#poids').val();
+	let taille = $('#taille').val();
+	$('#poids, #taille').val('');// on vide input
+	let imc = poids / (taille * taille);
+	let imc2 = imc.toFixed(1); // je prends 1 chiffre apres la virgule
+	if (imc < 18){
+		$('#demo').html('imc : '+imc2 + ' Maigreure');	
+	}else if (imc < 25){
+		$('#demo').html('imc : '+imc2 + ' Normale');	
+
+	}else{
+		$('#demo').html('imc : '+imc2 + ' Surpoids');	
+
+	}
+	
+	saveLocal();
+});
+
+</script>
+</body>
+</html>
