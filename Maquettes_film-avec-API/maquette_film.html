@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Film</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+</head>
+<body>
+	<div class="container-fluid">
+		<br><br>
+		<div class="row">
+
+			<div class="col-6 offset-3">
+				<form onsubmit="return cherche()"  action="">
+					<div class="row">
+						<div class="col-2"><h3>Film</h3></div>
+						<div class="col-6"><input class="form-control" id="search" /></div>
+						<div class="col-3">
+							<button onclick="" type="submit" class="btn btn-primary">
+								Recherche
+							</button>
+						</div>
+					</div>
+					<p> Indiquez le nom du film à rechercher:</p>
+				</form>		
+				<br><br>		
+				<table class="table" id="tabFilm">
+					<thead>
+						<tr>
+							<th >
+								Nom
+							</th>
+							<th >
+								Image
+							</th>
+							<th style="width:200px">
+								Année
+							</th>
+
+						</tr>
+						<tr>
+							<td id="nom"></td>
+							<td><img id="img" width="200"></td>
+							<td id="year"></td>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script>
+function cherche(){
+	// recupérer la valeur du champ input
+	let nom = document.getElementById('search').value;
+	// vide le champ
+	document.getElementById('search').value ='';
+
+	let url = 'http://www.omdbapi.com/?apiKey=efdc2275&t='+nom;
+	fetch(url)
+	.then(
+		response => 
+		{
+	 				// je souhaite que le body
+	 		return response.json();
+	 	}
+	 )
+	.then(
+		film => 
+		{
+			document.getElementById('nom').innerHTML= film.Title
+			document.getElementById('year').innerHTML= film.Year
+			document.getElementById('img').src = film.Poster;
+		}
+	); // then
+	return false;
+
+}
+</script>
+</body>
+</html>
